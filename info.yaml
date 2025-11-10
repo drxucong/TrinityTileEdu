@@ -11,13 +11,11 @@ project:
     - "src/trinity_core.v"
     - "src/trinity_mem.v"
     - "src/trinity_router.v"
-  clock_hz: 25000000   # TinyTapeout platform clock (25 MHz)
+  clock_hz: 25000000
   inputs: 8
   outputs: 8
   bidirs: 8
-  tiles:
-    columns: 2
-    rows: 2
+  tiles: "2x2"     # ← 必须是这些字符串之一：1x1, 1x2, 2x2, ...
 
 pinout:
   inputs:
