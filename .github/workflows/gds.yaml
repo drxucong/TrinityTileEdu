@@ -14,19 +14,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Force-create tt_submission directory
+      - name: Prepare tt_submission directory
         run: |
           rm -rf tt_submission
           mkdir -p tt_submission
-          # 这两行是给TT看的，占个位置
           echo "Trinity Tile EDU auto-submission artifact." > tt_submission/README.txt
-          # 如果仓库里有这些文件就一并带上
+          # 带上设计必须的文件
           if [ -f info.yaml ]; then cp info.yaml tt_submission/; fi
           if [ -d src ]; then cp -r src tt_submission/src; fi
+          # 关键：生成 TinyTapeout 要的 commit_id.json
+          COMMIT_SHA=${GITHUB_SHA:-"unknown"}
+          echo "{ \"commit\": \"${COMMIT_SHA}\" }" > tt_submission/commit_id.json
+          ls -R tt_submission
 
       - name: Upload tt_submission artifact
         uses: actions/upload-artifact@v4
         with:
-            name: tt_submission
-            path: tt_submission
-            if-no-files-found: warn
+          name: tt_submission
+          path: tt_submission
+          if-no-files-found: warn
