@@ -6,9 +6,9 @@ project:
   author: "Cong Xu"
   owner: "Cong Xu"
   description: "Single-top RTL model of the patented Trinity Tile adaptive compute architecture for educational use. Free for personal and academic use; commercial or derivative uses are prohibited."
-  top_module: "trinity_tile_edu"
+  top_module: "tt_um_drxucong_trinitytileedu"
   source_files:
-    - "src/trinity_tile_edu.v"
+    - "src/tt_um_drxucong_trinitytileedu.v"
     - "src/trinity_mode_ctrl.v"
     - "src/trinity_core.v"
     - "src/trinity_mem.v"
@@ -17,7 +17,7 @@ project:
   inputs: 8
   outputs: 8
   bidirs: 8
-  tiles: "2x2"     # Allowed values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2, 8x2, 3x4, 4x4, 5x4, 6x4, 8x4
+  tiles: "2x2"
 
 pinout:
   inputs:
