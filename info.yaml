@@ -1,3 +1,4 @@
+yaml_version: 6
 project:
   name: "Trinity Tile Educational Edition"
   owner: "Cong Xu"
@@ -9,4 +10,7 @@ project:
     - "src/trinity_core.v"
     - "src/trinity_mem.v"
     - "src/trinity_router.v"
-  clk_hz: 10000000
+  clock_hz: 10000000
+  inputs: 8
+  outputs: 8
+  bidirs: 8
