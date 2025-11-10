@@ -1,0 +1,41 @@
+name: docs
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y make python3 python3-pip
+          pip install pyyaml
+
+      - name: Verify info.yaml
+        run: |
+          echo "Verifying info.yaml..."
+          if ! grep -q "yaml_version:" info.yaml; then
+            echo "Error: Missing yaml_version field."
+            exit 1
+          fi
+          echo "info.yaml looks valid."
+
+      - name: List source files
+        run: |
+          echo "Source files:"
+          find src -name "*.v" -print
+
+      - name: Archive design files
+        run: |
+          mkdir -p build
+          cp info.yaml build/
+          cp -r src build/
+          echo "Files ready for Tiny Tapeout verification."
