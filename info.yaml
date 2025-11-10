@@ -1,4 +1,5 @@
 yaml_version: 6
+
 project:
   name: "Trinity Tile Educational Edition"
   owner: "Cong Xu"
@@ -14,3 +15,35 @@ project:
   inputs: 8
   outputs: 8
   bidirs: 8
+
+# Pin mapping for 8 input / 8 output / 8 bidirectional design
+pinout:
+  inputs:
+    - uii_in[0]
+    - uii_in[1]
+    - uii_in[2]
+    - uii_in[3]
+    - uii_in[4]
+    - uii_in[5]
+    - uii_in[6]
+    - uii_in[7]
+  outputs:
+    - uii_out[0]
+    - uii_out[1]
+    - uii_out[2]
+    - uii_out[3]
+    - uii_out[4]
+    - uii_out[5]
+    - uii_out[6]
+    - uii_out[7]
+  bidirs:
+    - uii_link_in[0]
+    - uii_link_in[1]
+    - uii_link_in[2]
+    - uii_link_in[3]
+    - uii_link_in[4]
+    - uii_link_in[5]
+    - uii_link_in[6]
+    - uii_link_in[7]
+  clock: sys_clk
+  reset: sys_rst_n
