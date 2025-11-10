@@ -1,0 +1,12 @@
+project:
+  name: "Trinity Tile Educational Edition"
+  owner: "Cong Xu"
+  description: "Single-top RTL model of the patented Trinity Tile adaptive compute architecture for educational use. Free for personal and academic use; commercial or derivative uses are prohibited."
+  top_module: "trinity_tile_edu"
+  source_files:
+    - "src/trinity_tile_edu.v"
+    - "src/trinity_mode_ctrl.v"
+    - "src/trinity_core.v"
+    - "src/trinity_mem.v"
+    - "src/trinity_router.v"
+  clk_hz: 10000000
