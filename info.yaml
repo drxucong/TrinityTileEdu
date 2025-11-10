@@ -15,6 +15,9 @@ project:
   inputs: 8
   outputs: 8
   bidirs: 8
+  tiles:
+    columns: 2   # you are using a 2x2 tile
+    rows: 2
 
 # Pin mapping for 8 input / 8 output / 8 bidirectional design
 pinout:
