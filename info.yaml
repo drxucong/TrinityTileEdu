@@ -11,15 +11,14 @@ project:
     - "src/trinity_core.v"
     - "src/trinity_mem.v"
     - "src/trinity_router.v"
-  clock_hz: 10000000
+  clock_hz: 25000000   # TinyTapeout platform clock (25 MHz)
   inputs: 8
   outputs: 8
   bidirs: 8
   tiles:
-    columns: 2   # you are using a 2x2 tile
+    columns: 2
     rows: 2
 
-# Pin mapping for 8 input / 8 output / 8 bidirectional design
 pinout:
   inputs:
     - uii_in[0]
