@@ -1,0 +1,29 @@
+name: gds
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 这里通常官方的模板会去拉他们的 docker 或工具，这里先做个最小化的占位
+      - name: Prepare submission folder
+        run: |
+          mkdir -p tt_submission
+          cp info.yaml tt_submission/
+          cp -r src tt_submission/ || true
+
+      # 关键：一定要上传名叫 tt_submission 的 artifact
+      - name: Upload submission artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: tt_submission
+          path: tt_submission
