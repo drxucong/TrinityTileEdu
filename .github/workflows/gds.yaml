@@ -14,22 +14,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Prepare tt_submission directory
+      - name: Prepare tt_submission directory (with parent)
         run: |
-          rm -rf tt_submission
-          mkdir -p tt_submission
-          echo "Trinity Tile EDU auto-submission artifact." > tt_submission/README.txt
-          # 带上设计必须的文件
-          if [ -f info.yaml ]; then cp info.yaml tt_submission/; fi
-          if [ -d src ]; then cp -r src tt_submission/src; fi
-          # 关键：生成 TinyTapeout 要的 commit_id.json
-          COMMIT_SHA=${GITHUB_SHA:-"unknown"}
-          echo "{ \"commit\": \"${COMMIT_SHA}\" }" > tt_submission/commit_id.json
-          ls -R tt_submission
+          # 我们创建一个外层目录，把 tt_submission 放进去
+          rm -rf upload_root
+          mkdir -p upload_root/tt_submission
+          echo "Trinity Tile EDU auto-submission artifact." > upload_root/tt_submission/README.txt
 
-      - name: Upload tt_submission artifact
+          # 带上必须的文件
+          if [ -f info.yaml ]; then cp info.yaml upload_root/tt_submission/; fi
+          if [ -d src ]; then cp -r src upload_root/tt_submission/src; fi
+
+          # TT 要的 commit_id.json，注意放在 tt_submission/ 里面
+          COMMIT_SHA=${GITHUB_SHA:-"unknown"}
+          echo "{ \"commit\": \"${COMMIT_SHA}\" }" > upload_root/tt_submission/commit_id.json
+
+          echo "==== upload_root tree ===="
+          ls -R upload_root
+
+      - name: Upload tt_submission artifact (keep folder)
         uses: actions/upload-artifact@v4
         with:
           name: tt_submission
-          path: tt_submission
+          path: upload_root
           if-no-files-found: warn
