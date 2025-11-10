@@ -15,8 +15,8 @@ module trinity_core (
 
     always @(posedge sys_clk or negedge sys_rst_n) begin
         if (!sys_rst_n) begin
-            acc      = 32'd0;
-            data_out = 8'd0;
+            acc      <= 32'd0;
+            data_out <= 8'd0;
         end else begin
             if (bus_valid && bus_exec) begin
                 case (bus_mode)
